@@ -1,0 +1,7 @@
+{
+  "provider": "bing",
+  "market": "en-US",
+  "resolution": "UHD",
+  "cache": { "keep": 7 },
+  "wallpaper": { "mode": "fill" }
+}
