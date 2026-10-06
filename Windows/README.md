@@ -110,8 +110,9 @@ After changing the mode, run `update --force` to apply it immediately.
 The task runs at **08:00 local time** by default and **30 seconds after login**.
 It runs in your interactive user session without storing a password. It also
 allows missed scheduled runs to catch up when available. It works on battery
-power and does not wake a sleeping computer. Failed scheduled runs get two
-additional attempts, 15 minutes apart.
+power and does not wake a sleeping computer. Failed scheduled runs retry every
+hour until a run succeeds, with a budget of 999 retries per
+failed run (over 41 days). Daily and login triggers continue independently.
 
 The scheduler invokes the windowless executable directly. There is no console
 flash and no persistent PowerShell process. View the task in **Task Scheduler**,

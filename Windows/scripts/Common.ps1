@@ -63,8 +63,10 @@ function New-WallpaperTaskDefinition {
     $settings.WakeToRun = $false
     $settings.MultipleInstances = 2 # Ignore a new scheduled run if one is still running.
     $settings.ExecutionTimeLimit = 'PT15M'
-    $settings.RestartCount = 2
-    $settings.RestartInterval = 'PT15M'
+    # Allow over 41 days of hourly retries per failed run. Daily and login
+    # triggers continue independently; a successful run stops failure retries.
+    $settings.RestartCount = 999
+    $settings.RestartInterval = 'PT1H'
 
     $daily = $definition.Triggers.Create(2) # TASK_TRIGGER_DAILY
     $daily.StartBoundary = [DateTime]::Today.ToString('yyyy-MM-dd') + 'T' + $Time + ':00'
